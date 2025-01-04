@@ -1,0 +1,25 @@
+enum Classification  {
+  LANDSCAPE, SEASCAPE, PORTRAIT, FIGURE, STILL_LIFE, NUDE, ANIMAL, ABSTRACT, OTHER
+}
+
+enum AuctionCategory {
+  PAINTINGS, DRAWINGS, PHOTOGRAPHIC_IMAGES, SCULPTURES, CARVINGS
+}
+
+entity Product {
+  id Long
+  auctionCategory AuctionCategory required
+  lotNumber Long required unique
+  authorName String required
+  producedYear Instant required
+  classification Classification required
+  estimatedPrice Double required
+  description String
+  auctionDate Instant
+  additionalInformation TextBlob
+}
+
+dto * with mapstruct
+service * with serviceImpl
+paginate * with pagination
+filter *

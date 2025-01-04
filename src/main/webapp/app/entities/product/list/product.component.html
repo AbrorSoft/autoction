@@ -1,0 +1,197 @@
+<div>
+  <h2 id="page-heading" data-cy="ProductHeading">
+    <span jhiTranslate="auctionApp.product.home.title">Products</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="auctionApp.product.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-product"
+        [routerLink]="['/product/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="auctionApp.product.home.createLabel">Create a new Product</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <jhi-filter [filters]="filters"></jhi-filter>
+
+  @if (products?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="auctionApp.product.home.notFound">No Products found</span>
+    </div>
+  }
+
+  @if (products && products.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="auctionApp.product.id">Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="auctionCategory">
+              <div class="d-flex">
+                <span jhiTranslate="auctionApp.product.auctionCategory">Auction Category</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="lotNumber">
+              <div class="d-flex">
+                <span jhiTranslate="auctionApp.product.lotNumber">Lot Number</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="authorName">
+              <div class="d-flex">
+                <span jhiTranslate="auctionApp.product.authorName">Author Name</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="producedYear">
+              <div class="d-flex">
+                <span jhiTranslate="auctionApp.product.producedYear">Produced Year</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="classification">
+              <div class="d-flex">
+                <span jhiTranslate="auctionApp.product.classification">Classification</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="estimatedPrice">
+              <div class="d-flex">
+                <span jhiTranslate="auctionApp.product.estimatedPrice">Estimated Price</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="description">
+              <div class="d-flex">
+                <span jhiTranslate="auctionApp.product.description">Description</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="auctionDate">
+              <div class="d-flex">
+                <span jhiTranslate="auctionApp.product.auctionDate">Auction Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="additionalInformation">
+              <div class="d-flex">
+                <span jhiTranslate="auctionApp.product.additionalInformation">Additional Information</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (product of products; track trackId(product)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/product', product.id, 'view']">{{ product.id }}</a>
+              </td>
+              <td [jhiTranslate]="'auctionApp.AuctionCategory.' + (product.auctionCategory ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    PAINTINGS: 'PAINTINGS',
+                    DRAWINGS: 'DRAWINGS',
+                    PHOTOGRAPHIC_IMAGES: 'PHOTOGRAPHIC_IMAGES',
+                    SCULPTURES: 'SCULPTURES',
+                    CARVINGS: 'CARVINGS',
+                  }[product.auctionCategory ?? 'null']
+                }}
+              </td>
+              <td>{{ product.lotNumber }}</td>
+              <td>{{ product.authorName }}</td>
+              <td>{{ product.producedYear | formatMediumDatetime }}</td>
+              <td [jhiTranslate]="'auctionApp.Classification.' + (product.classification ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    LANDSCAPE: 'LANDSCAPE',
+                    SEASCAPE: 'SEASCAPE',
+                    PORTRAIT: 'PORTRAIT',
+                    FIGURE: 'FIGURE',
+                    STILL_LIFE: 'STILL_LIFE',
+                    NUDE: 'NUDE',
+                    ANIMAL: 'ANIMAL',
+                    ABSTRACT: 'ABSTRACT',
+                    OTHER: 'OTHER',
+                  }[product.classification ?? 'null']
+                }}
+              </td>
+              <td>{{ product.estimatedPrice }}</td>
+              <td>{{ product.description }}</td>
+              <td>{{ product.auctionDate | formatMediumDatetime }}</td>
+              <td>{{ product.additionalInformation }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/product', product.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/product', product.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(product)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (products && products.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

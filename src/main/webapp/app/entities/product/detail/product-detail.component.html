@@ -1,0 +1,88 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (product(); as productRef) {
+      <div>
+        <h2 data-cy="productDetailsHeading"><span jhiTranslate="auctionApp.product.detail.title">Product</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="auctionApp.product.id">Id</span></dt>
+          <dd>
+            <span>{{ productRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="auctionApp.product.auctionCategory">Auction Category</span></dt>
+          <dd>
+            <span [jhiTranslate]="'auctionApp.AuctionCategory.' + (productRef.auctionCategory ?? 'null')">{{
+              {
+                null: '',
+                PAINTINGS: 'PAINTINGS',
+                DRAWINGS: 'DRAWINGS',
+                PHOTOGRAPHIC_IMAGES: 'PHOTOGRAPHIC_IMAGES',
+                SCULPTURES: 'SCULPTURES',
+                CARVINGS: 'CARVINGS',
+              }[productRef.auctionCategory ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="auctionApp.product.lotNumber">Lot Number</span></dt>
+          <dd>
+            <span>{{ productRef.lotNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="auctionApp.product.authorName">Author Name</span></dt>
+          <dd>
+            <span>{{ productRef.authorName }}</span>
+          </dd>
+          <dt><span jhiTranslate="auctionApp.product.producedYear">Produced Year</span></dt>
+          <dd>
+            <span>{{ productRef.producedYear | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="auctionApp.product.classification">Classification</span></dt>
+          <dd>
+            <span [jhiTranslate]="'auctionApp.Classification.' + (productRef.classification ?? 'null')">{{
+              {
+                null: '',
+                LANDSCAPE: 'LANDSCAPE',
+                SEASCAPE: 'SEASCAPE',
+                PORTRAIT: 'PORTRAIT',
+                FIGURE: 'FIGURE',
+                STILL_LIFE: 'STILL_LIFE',
+                NUDE: 'NUDE',
+                ANIMAL: 'ANIMAL',
+                ABSTRACT: 'ABSTRACT',
+                OTHER: 'OTHER',
+              }[productRef.classification ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="auctionApp.product.estimatedPrice">Estimated Price</span></dt>
+          <dd>
+            <span>{{ productRef.estimatedPrice }}</span>
+          </dd>
+          <dt><span jhiTranslate="auctionApp.product.description">Description</span></dt>
+          <dd>
+            <span>{{ productRef.description }}</span>
+          </dd>
+          <dt><span jhiTranslate="auctionApp.product.auctionDate">Auction Date</span></dt>
+          <dd>
+            <span>{{ productRef.auctionDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="auctionApp.product.additionalInformation">Additional Information</span></dt>
+          <dd>
+            <span>{{ productRef.additionalInformation }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/product', productRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

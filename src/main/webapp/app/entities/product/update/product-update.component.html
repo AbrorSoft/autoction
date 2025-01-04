@@ -1,0 +1,218 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-product-heading" data-cy="ProductCreateUpdateHeading" jhiTranslate="auctionApp.product.home.createOrEditLabel">
+        Create or edit a Product
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="auctionApp.product.id">Id</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let auctionCategoryRef = editForm.get('auctionCategory')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_auctionCategory" jhiTranslate="auctionApp.product.auctionCategory">Auction Category</label>
+          <select
+            class="form-control"
+            name="auctionCategory"
+            formControlName="auctionCategory"
+            id="field_auctionCategory"
+            data-cy="auctionCategory"
+          >
+            <option [ngValue]="null">{{ 'auctionApp.AuctionCategory.null' | translate }}</option>
+            @for (auctionCategory of auctionCategoryValues; track $index) {
+              <option [value]="auctionCategory">{{ 'auctionApp.AuctionCategory.' + auctionCategory | translate }}</option>
+            }
+          </select>
+          @if (auctionCategoryRef.invalid && (auctionCategoryRef.dirty || auctionCategoryRef.touched)) {
+            <div>
+              @if (editForm.get('auctionCategory')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let lotNumberRef = editForm.get('lotNumber')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_lotNumber" jhiTranslate="auctionApp.product.lotNumber">Lot Number</label>
+          <input type="number" class="form-control" name="lotNumber" id="field_lotNumber" data-cy="lotNumber" formControlName="lotNumber" />
+          @if (lotNumberRef.invalid && (lotNumberRef.dirty || lotNumberRef.touched)) {
+            <div>
+              @if (editForm.get('lotNumber')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('lotNumber')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let authorNameRef = editForm.get('authorName')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_authorName" jhiTranslate="auctionApp.product.authorName">Author Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="authorName"
+            id="field_authorName"
+            data-cy="authorName"
+            formControlName="authorName"
+          />
+          @if (authorNameRef.invalid && (authorNameRef.dirty || authorNameRef.touched)) {
+            <div>
+              @if (editForm.get('authorName')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let producedYearRef = editForm.get('producedYear')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_producedYear" jhiTranslate="auctionApp.product.producedYear">Produced Year</label>
+          <div class="d-flex">
+            <input
+              id="field_producedYear"
+              data-cy="producedYear"
+              type="datetime-local"
+              class="form-control"
+              name="producedYear"
+              formControlName="producedYear"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (producedYearRef.invalid && (producedYearRef.dirty || producedYearRef.touched)) {
+            <div>
+              @if (editForm.get('producedYear')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('producedYear')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >This field should be a date and time.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let classificationRef = editForm.get('classification')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_classification" jhiTranslate="auctionApp.product.classification">Classification</label>
+          <select
+            class="form-control"
+            name="classification"
+            formControlName="classification"
+            id="field_classification"
+            data-cy="classification"
+          >
+            <option [ngValue]="null">{{ 'auctionApp.Classification.null' | translate }}</option>
+            @for (classification of classificationValues; track $index) {
+              <option [value]="classification">{{ 'auctionApp.Classification.' + classification | translate }}</option>
+            }
+          </select>
+          @if (classificationRef.invalid && (classificationRef.dirty || classificationRef.touched)) {
+            <div>
+              @if (editForm.get('classification')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let estimatedPriceRef = editForm.get('estimatedPrice')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_estimatedPrice" jhiTranslate="auctionApp.product.estimatedPrice">Estimated Price</label>
+          <input
+            type="number"
+            class="form-control"
+            name="estimatedPrice"
+            id="field_estimatedPrice"
+            data-cy="estimatedPrice"
+            formControlName="estimatedPrice"
+          />
+          @if (estimatedPriceRef.invalid && (estimatedPriceRef.dirty || estimatedPriceRef.touched)) {
+            <div>
+              @if (editForm.get('estimatedPrice')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('estimatedPrice')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_description" jhiTranslate="auctionApp.product.description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_auctionDate" jhiTranslate="auctionApp.product.auctionDate">Auction Date</label>
+          <div class="d-flex">
+            <input
+              id="field_auctionDate"
+              data-cy="auctionDate"
+              type="datetime-local"
+              class="form-control"
+              name="auctionDate"
+              formControlName="auctionDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_additionalInformation" jhiTranslate="auctionApp.product.additionalInformation"
+            >Additional Information</label
+          >
+          <textarea
+            class="form-control"
+            name="additionalInformation"
+            id="field_additionalInformation"
+            data-cy="additionalInformation"
+            formControlName="additionalInformation"
+          ></textarea>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

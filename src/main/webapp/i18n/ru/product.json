@@ -1,0 +1,32 @@
+{
+  "auctionApp": {
+    "product": {
+      "home": {
+        "title": "Products",
+        "refreshListLabel": "Обновить список",
+        "createLabel": "Создать новый Product",
+        "createOrEditLabel": "Создать или отредактировать Product",
+        "notFound": "Products не найдено"
+      },
+      "created": "Новый Product создан с идентификатором {{ param }}",
+      "updated": "Product обновлен с идентификатором {{ param }}",
+      "deleted": "Product удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Product {{ id }}?"
+      },
+      "detail": {
+        "title": "Product"
+      },
+      "id": "Id",
+      "auctionCategory": "Auction Category",
+      "lotNumber": "Lot Number",
+      "authorName": "Author Name",
+      "producedYear": "Produced Year",
+      "classification": "Classification",
+      "estimatedPrice": "Estimated Price",
+      "description": "Description",
+      "auctionDate": "Auction Date",
+      "additionalInformation": "Additional Information"
+    }
+  }
+}

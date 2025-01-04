@@ -1,0 +1,32 @@
+{
+  "auctionApp": {
+    "product": {
+      "home": {
+        "title": "Products",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Yangi Product qo`shish",
+        "createOrEditLabel": "Productni tahrirlash",
+        "notFound": "No Products found"
+      },
+      "created": "Product {{ param }} bilan qo`shildi",
+      "updated": "{{ param }}- Product saqlandi",
+      "deleted": "{{ param }}- Product o`chirildi",
+      "delete": {
+        "question": "{{ id }}- Productni o`chirmoqchimisiz? "
+      },
+      "detail": {
+        "title": "Product"
+      },
+      "id": "Id",
+      "auctionCategory": "Auction Category",
+      "lotNumber": "Lot Number",
+      "authorName": "Author Name",
+      "producedYear": "Produced Year",
+      "classification": "Classification",
+      "estimatedPrice": "Estimated Price",
+      "description": "Description",
+      "auctionDate": "Auction Date",
+      "additionalInformation": "Additional Information"
+    }
+  }
+}

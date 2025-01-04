@@ -1,0 +1,63 @@
+{
+  "annotations": {
+    "changelogDate": "20241228120103"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "auctionCategory",
+      "fieldType": "AuctionCategory",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "PAINTINGS,DRAWINGS,PHOTOGRAPHIC_IMAGES,SCULPTURES,CARVINGS"
+    },
+    {
+      "fieldName": "lotNumber",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "authorName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "producedYear",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "classification",
+      "fieldType": "Classification",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "LANDSCAPE,SEASCAPE,PORTRAIT,FIGURE,STILL_LIFE,NUDE,ANIMAL,ABSTRACT,OTHER"
+    },
+    {
+      "fieldName": "estimatedPrice",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "auctionDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "additionalInformation",
+      "fieldType": "TextBlob"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Product",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}
