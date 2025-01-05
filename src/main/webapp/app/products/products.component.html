@@ -1,12 +1,98 @@
-<div class="products">
-  @for (product of products(); track $index) {
-    <div class="product">
-      <img [src]="getImageStable(product.imageKey)" [alt]="product.authorName" />
+<div class="main">
+  <h2>Explore</h2>
 
-      <div class="names">
-        <span>Fragile</span>
-        <span></span>
+  <div class="body">
+    <div class="left">
+      <div class="dropdown">
+        <div class="name" (click)="updateDropdown('category')">
+          <span>Category</span>
+
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M15.6508 4.24073C16.0701 4.60015 16.1187 5.23145 15.7593 5.65078L10.3171 12L15.7593 18.3492C16.1187 18.7685 16.0701 19.3998 15.6508 19.7592C15.2315 20.1187 14.6002 20.0701 14.2407 19.6508L8.24074 12.6508C7.91975 12.2763 7.91975 11.7237 8.24074 11.3492L14.2407 4.3492C14.6002 3.92987 15.2315 3.88131 15.6508 4.24073Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+
+        <div class="dropdown-items" [ngClass]="{ active: dropdowns().category }">
+          <h1>hello world</h1>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <div class="name">
+          <span>Price</span>
+
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M15.6508 4.24073C16.0701 4.60015 16.1187 5.23145 15.7593 5.65078L10.3171 12L15.7593 18.3492C16.1187 18.7685 16.0701 19.3998 15.6508 19.7592C15.2315 20.1187 14.6002 20.0701 14.2407 19.6508L8.24074 12.6508C7.91975 12.2763 7.91975 11.7237 8.24074 11.3492L14.2407 4.3492C14.6002 3.92987 15.2315 3.88131 15.6508 4.24073Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+
+        <div class="dropdown-items"></div>
+      </div>
+
+      <div class="dropdown">
+        <div class="name">
+          <span>Auction Date</span>
+
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M15.6508 4.24073C16.0701 4.60015 16.1187 5.23145 15.7593 5.65078L10.3171 12L15.7593 18.3492C16.1187 18.7685 16.0701 19.3998 15.6508 19.7592C15.2315 20.1187 14.6002 20.0701 14.2407 19.6508L8.24074 12.6508C7.91975 12.2763 7.91975 11.7237 8.24074 11.3492L14.2407 4.3492C14.6002 3.92987 15.2315 3.88131 15.6508 4.24073Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+
+        <div class="dropdown-items"></div>
+      </div>
+
+      <div class="dropdown">
+        <div class="name">
+          <span>Subject Classification</span>
+
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M15.6508 4.24073C16.0701 4.60015 16.1187 5.23145 15.7593 5.65078L10.3171 12L15.7593 18.3492C16.1187 18.7685 16.0701 19.3998 15.6508 19.7592C15.2315 20.1187 14.6002 20.0701 14.2407 19.6508L8.24074 12.6508C7.91975 12.2763 7.91975 11.7237 8.24074 11.3492L14.2407 4.3492C14.6002 3.92987 15.2315 3.88131 15.6508 4.24073Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+
+        <div class="dropdown-items"></div>
       </div>
     </div>
-  }
+
+    <div class="products right">
+      @for (product of products(); track $index) {
+        <div class="product">
+          <img [src]="getImageStable(product.imageKey)" [alt]="product.authorName" />
+
+          <div class="names">
+            <div class="category">{{ product.auctionCategory }}</div>
+            <div class="price">{{ product.estimatedPrice | number }} $</div>
+          </div>
+
+          <div class="author">
+            {{ product.authorName }}
+          </div>
+
+          <span class="year">
+            {{ product.producedYear | date }}
+          </span>
+        </div>
+      }
+    </div>
+  </div>
 </div>

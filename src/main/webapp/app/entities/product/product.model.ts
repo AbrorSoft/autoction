@@ -8,7 +8,7 @@ export interface IProduct {
   lotNumber?: number | null;
   authorName?: string | null;
   imageKey?: BinaryData | null;
-  producedYear?: dayjs.Dayjs | null;
+  producedYear?: any | null;
   classification?: keyof typeof Classification | null;
   estimatedPrice?: number | null;
   description?: string | null;

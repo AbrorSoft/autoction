@@ -1,10 +1,13 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { IProduct } from '../entities/product/product.model';
 import { ProductService } from '../entities/product/service/product.service';
+import { DatePipe, DecimalPipe, NgClass } from '@angular/common';
 
 @Component({
   templateUrl: 'products.component.html',
+  styleUrl: 'products.scss',
   standalone: true,
+  imports: [DecimalPipe, DatePipe, NgClass],
 })
 export class ProductsComponent implements OnInit {
   /**
@@ -17,6 +20,13 @@ export class ProductsComponent implements OnInit {
    *
    */
   products = signal<IProduct[]>([]);
+
+  /**
+   *
+   */
+  dropdowns: WritableSignal<{ [key: string]: boolean }> = signal({
+    category: false,
+  });
 
   /**
    *
@@ -39,5 +49,15 @@ export class ProductsComponent implements OnInit {
    */
   getImageStable(imageKey?: BinaryData | null) {
     return 'data:image/png;base64,' + imageKey;
+  }
+
+  /**
+   *
+   */
+  updateDropdown(name: string) {
+    this.dropdowns.update(item => {
+      item[name] = !item[name];
+      return item;
+    });
   }
 }
