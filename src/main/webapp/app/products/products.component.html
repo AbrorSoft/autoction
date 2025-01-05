@@ -1,0 +1,12 @@
+<div class="products">
+  @for (product of products(); track $index) {
+    <div class="product">
+      <img [src]="getImageStable(product.imageKey)" [alt]="product.authorName" />
+
+      <div class="names">
+        <span>Fragile</span>
+        <span></span>
+      </div>
+    </div>
+  }
+</div>
