@@ -54,8 +54,8 @@ export class ProductUpdateComponent implements OnInit {
     this.dataUtils.openFile(base64String, contentType);
   }
 
-  setFileData(event: Event, field: string, isImage: boolean): void {
-    this.dataUtils.loadFileToForm(event, this.editForm, field, isImage).subscribe({
+  setFileData(event: Event): void {
+    this.dataUtils.loadFileToForm(event, this.editForm, 'imageKey', true).subscribe({
       error: (err: FileLoadError) =>
         this.eventManager.broadcast(new EventWithContent<AlertError>('auctionApp.error', { ...err, key: `error.file.${err.key}` })),
     });

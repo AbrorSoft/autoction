@@ -25,6 +25,7 @@
       "classification": "Classification",
       "estimatedPrice": "Estimated Price",
       "description": "Description",
+      "imageKey": "Image",
       "auctionDate": "Auction Date",
       "additionalInformation": "Additional Information"
     }

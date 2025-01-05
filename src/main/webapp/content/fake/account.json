@@ -1,0 +1,10 @@
+{
+  "activated": true,
+  "authorities": ["ROLE_ADMIN"],
+  "email": "",
+  "firstName": "",
+  "langKey": "en",
+  "lastName": "",
+  "login": "admin",
+  "imageUrl": null
+}

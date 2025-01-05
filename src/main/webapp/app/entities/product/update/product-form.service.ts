@@ -34,6 +34,7 @@ type ProductFormGroupContent = {
   id: FormControl<ProductFormRawValue['id'] | NewProduct['id']>;
   auctionCategory: FormControl<ProductFormRawValue['auctionCategory']>;
   lotNumber: FormControl<ProductFormRawValue['lotNumber']>;
+  imageKey: FormControl<ProductFormRawValue['imageKey']>;
   authorName: FormControl<ProductFormRawValue['authorName']>;
   producedYear: FormControl<ProductFormRawValue['producedYear']>;
   classification: FormControl<ProductFormRawValue['classification']>;
@@ -64,6 +65,9 @@ export class ProductFormService {
         validators: [Validators.required],
       }),
       lotNumber: new FormControl(productRawValue.lotNumber, {
+        validators: [Validators.required],
+      }),
+      imageKey: new FormControl(productRawValue.imageKey, {
         validators: [Validators.required],
       }),
       authorName: new FormControl(productRawValue.authorName, {

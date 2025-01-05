@@ -7,6 +7,7 @@ export interface IProduct {
   auctionCategory?: keyof typeof AuctionCategory | null;
   lotNumber?: number | null;
   authorName?: string | null;
+  imageKey?: BinaryData | null;
   producedYear?: dayjs.Dayjs | null;
   classification?: keyof typeof Classification | null;
   estimatedPrice?: number | null;
