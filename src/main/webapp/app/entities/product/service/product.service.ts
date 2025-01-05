@@ -52,7 +52,9 @@ export class ProductService {
       .patch<RestProduct>(`${this.resourceUrl}/${this.getProductIdentifier(product)}`, copy, { observe: 'response' })
       .pipe(map(res => this.convertResponseFromServer(res)));
   }
-
+  getAllAuthor() {
+    return this.http.get(this.resourceUrl, { observe: 'response' });
+  }
   find(id: number): Observable<EntityResponseType> {
     return this.http
       .get<RestProduct>(`${this.resourceUrl}/${id}`, { observe: 'response' })

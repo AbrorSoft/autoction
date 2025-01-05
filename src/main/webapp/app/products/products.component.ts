@@ -12,6 +12,7 @@ import { FilterComponent } from './components/filter/filter.component';
   imports: [DecimalPipe, DatePipe, NgClass, FilterComponent],
 })
 export class ProductsComponent implements OnInit {
+  authors: any;
   /**
    *
    * @private
@@ -28,6 +29,7 @@ export class ProductsComponent implements OnInit {
    */
   ngOnInit() {
     this.loadProduct();
+    this.getAuthors();
   }
 
   /**
@@ -38,7 +40,10 @@ export class ProductsComponent implements OnInit {
       if (data.body) this.products.set(data.body);
     });
   }
-
+  getAuthors() {
+    this.authors = this.productService.getAllAuthor().subscribe(data => data);
+    console.log(this.authors);
+  }
   /**
    *
    */
