@@ -10,7 +10,11 @@
       <div class="products">
         @for (product of products(); track $index) {
           <div class="product">
-            <img [routerLink]="['/', 'products', product.id]" [src]="getImageStable(product.imageKey)" [alt]="product.authorName" />
+            <img
+              [routerLink]="['/dashboard', 'products', product.id]"
+              [src]="getImageStable(product.imageKey)"
+              [alt]="product.authorName"
+            />
 
             <div class="names">
               <div class="category">{{ product.auctionCategory }}</div>

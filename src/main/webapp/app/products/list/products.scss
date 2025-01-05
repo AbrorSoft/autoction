@@ -1,5 +1,5 @@
 .main {
-  padding: 3rem;
+  padding: 1rem;
 
   h2 {
     font-weight: 500;
@@ -9,7 +9,7 @@
   .body {
     display: flex;
     margin-top: 3rem;
-    gap: 2rem;
+    gap: 5rem;
 
     .left {
       width: 250px;
@@ -18,7 +18,7 @@
     .products {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 1rlh;
 
       .product {
         border-radius: var(--border-radius);
@@ -77,7 +77,7 @@
 
 @media only screen and (max-width: 1100px) {
   .product {
-    width: calc(100% / 3 - 10px) !important;
+    width: calc(100% / 3 - 1rlh) !important;
     img {
       height: 150px !important;
     }
