@@ -12,7 +12,7 @@ import { FilterComponent } from './components/filter/filter.component';
   imports: [DecimalPipe, DatePipe, NgClass, FilterComponent],
 })
 export class ProductsComponent implements OnInit {
-  authors: any;
+  authors: any = new Set();
   /**
    *
    * @private
@@ -42,8 +42,11 @@ export class ProductsComponent implements OnInit {
     });
   }
   getAuthors() {
-    this.authors = this.productService.getAllAuthor().subscribe(data => data);
-    console.log(this.authors);
+    this.productService.query({ page: 0 }).subscribe(data => {
+      this.authors = data.body?.map(author => {
+        if (this.authors.has(!author.authorName)) this.authors.add(author.authorName);
+      });
+    });
   }
   /**
    *
