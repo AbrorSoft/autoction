@@ -1,15 +1,16 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { IProduct } from '../../entities/product/product.model';
 import { ProductService } from '../../entities/product/service/product.service';
-import { DatePipe, DecimalPipe, NgClass } from '@angular/common';
+import { DecimalPipe, NgClass } from '@angular/common';
 import { FilterComponent } from './filter/filter.component';
 import { RouterLink } from '@angular/router';
+import FormatMediumDatePipe from '../../shared/date/format-medium-date.pipe';
 
 @Component({
   templateUrl: 'products.component.html',
   styleUrl: 'products.scss',
   standalone: true,
-  imports: [DecimalPipe, DatePipe, NgClass, FilterComponent, RouterLink],
+  imports: [DecimalPipe, NgClass, FilterComponent, RouterLink, FormatMediumDatePipe],
 })
 export class ProductsComponent implements OnInit {
   authors: any = new Set();

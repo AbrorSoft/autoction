@@ -4,6 +4,15 @@
       <img [src]="getImageStable(product()?.imageKey)" alt="" />
     </div>
 
-    <div class="right"></div>
+    <div class="right">
+      <h3 class="name">{{ product()?.auctionCategory }}</h3>
+      <span class="author">by {{ product()?.authorName }}</span>
+
+      <h3 class="price">${{ product()?.estimatedPrice | number }}</h3>
+
+      <p class="description">{{ product()?.description }}</p>
+
+      <span class="date">{{ product()?.auctionDate | formatMediumDate }}</span>
+    </div>
   </div>
 }
