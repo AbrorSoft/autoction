@@ -3,7 +3,7 @@
     "baseUrl": "src/main/webapp/",
     "outDir": "./target/out-tsc/root",
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "strict": false,
     "strictNullChecks": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,

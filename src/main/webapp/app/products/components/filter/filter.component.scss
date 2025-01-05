@@ -1,0 +1,44 @@
+.dropdown {
+  width: 100%;
+  margin-bottom: 15px;
+  .name {
+    display: flex;
+    justify-content: space-between;
+    span {
+      font-weight: 600;
+    }
+    svg {
+      color: #a4a2a2;
+      transition: 0.5s;
+      transform: rotateZ(90deg);
+    }
+    .active-icon {
+      transform: rotateZ(-90deg);
+    }
+  }
+
+  .dropdown-items {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s;
+    animation-delay: 1s;
+    padding: {
+      left: 7px;
+      right: 7px;
+    }
+  }
+
+  .active {
+    max-height: 300px;
+  }
+}
+
+.category-select {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  span {
+    font-weight: 400;
+    font-size: 14px;
+  }
+}
