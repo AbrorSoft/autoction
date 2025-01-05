@@ -40,10 +40,17 @@
 </div>
 
 <div class="dropdown">
-  <div class="name">
+  <div class="name" (click)="updateDropdown('price')">
     <span>Price</span>
 
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      [ngClass]="{ 'active-icon': dropdowns().price }"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -53,7 +60,19 @@
     </svg>
   </div>
 
-  <div class="dropdown-items"></div>
+  <div class="dropdown-items" [ngClass]="{ active: dropdowns().price }">
+    <div class="price">
+      <div class="price-input">
+        <span>$</span>
+        <input type="text" placeholder="from" />
+      </div>
+
+      <div class="price-input">
+        <span>$</span>
+        <input type="text" placeholder="to" />
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="dropdown">
@@ -74,10 +93,17 @@
 </div>
 
 <div class="dropdown">
-  <div class="name">
+  <div class="name" (click)="updateDropdown('classification')">
     <span>Subject Classification</span>
 
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      [ngClass]="{ 'active-icon': dropdowns().classification }"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -87,5 +113,22 @@
     </svg>
   </div>
 
-  <div class="dropdown-items"></div>
+  <div class="dropdown-items" [ngClass]="{ active: dropdowns().classification }">
+    @for (classification of classifications; track $index) {
+      <div class="category-select" (click)="selectedClassification = classification[1]">
+        <span>{{ classification[0] }}</span>
+
+        @if (selectedClassification === classification[1]) {
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M14.4111 6.07742C14.7365 5.75198 15.2641 5.75198 15.5896 6.07742C15.89 6.37782 15.9131 6.85052 15.6589 7.17743L15.5896 7.25593L8.92291 13.9226C8.62251 14.223 8.14982 14.2461 7.82291 13.9919L7.7444 13.9226L4.41107 10.5893C4.08563 10.2638 4.08563 9.73619 4.41107 9.41075C4.71147 9.11035 5.18417 9.08724 5.51108 9.34143L5.58958 9.41075L8.33366 12.1542L14.4111 6.07742Z"
+              fill="currentColor"
+            />
+          </svg>
+        }
+      </div>
+    }
+  </div>
 </div>
