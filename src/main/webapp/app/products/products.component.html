@@ -3,11 +3,29 @@
 
   <div class="body">
     <div class="left">
-      <filter />
+      <filter (onFilter)="setQuery($event)" />
     </div>
 
     <div class="right">
       <div class="products">
+        @for (product of products(); track $index) {
+          <div class="product">
+            <img [src]="getImageStable(product.imageKey)" [alt]="product.authorName" />
+
+            <div class="names">
+              <div class="category">{{ product.auctionCategory }}</div>
+              <div class="price">{{ product.estimatedPrice | number }} $</div>
+            </div>
+
+            <div class="author">
+              {{ product.authorName }}
+            </div>
+
+            <span class="year">
+              {{ product.producedYear | date }}
+            </span>
+          </div>
+        }
         @for (product of products(); track $index) {
           <div class="product">
             <img [src]="getImageStable(product.imageKey)" [alt]="product.authorName" />

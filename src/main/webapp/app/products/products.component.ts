@@ -23,6 +23,7 @@ export class ProductsComponent implements OnInit {
    *
    */
   products = signal<IProduct[]>([]);
+  query: any;
 
   /**
    *
@@ -36,7 +37,7 @@ export class ProductsComponent implements OnInit {
    *
    */
   loadProduct() {
-    this.productService.query().subscribe(data => {
+    this.productService.query(this.query).subscribe(data => {
       if (data.body) this.products.set(data.body);
     });
   }
@@ -49,5 +50,13 @@ export class ProductsComponent implements OnInit {
    */
   getImageStable(imageKey?: BinaryData | null) {
     return 'data:image/png;base64,' + imageKey;
+  }
+
+  /**
+   *
+   */
+  setQuery(event: any) {
+    this.query = event;
+    this.loadProduct();
   }
 }
