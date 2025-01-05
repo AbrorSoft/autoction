@@ -10,25 +10,7 @@
       <div class="products">
         @for (product of products(); track $index) {
           <div class="product">
-            <img [src]="getImageStable(product.imageKey)" [alt]="product.authorName" />
-
-            <div class="names">
-              <div class="category">{{ product.auctionCategory }}</div>
-              <div class="price">{{ product.estimatedPrice | number }} $</div>
-            </div>
-
-            <div class="author">
-              {{ product.authorName }}
-            </div>
-
-            <span class="year">
-              {{ product.producedYear | date }}
-            </span>
-          </div>
-        }
-        @for (product of products(); track $index) {
-          <div class="product">
-            <img [src]="getImageStable(product.imageKey)" [alt]="product.authorName" />
+            <img [routerLink]="['/', 'products', product.id]" [src]="getImageStable(product.imageKey)" [alt]="product.authorName" />
 
             <div class="names">
               <div class="category">{{ product.auctionCategory }}</div>

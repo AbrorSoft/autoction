@@ -1,15 +1,15 @@
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
-import { IProduct } from '../entities/product/product.model';
-import { ProductService } from '../entities/product/service/product.service';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { IProduct } from '../../entities/product/product.model';
+import { ProductService } from '../../entities/product/service/product.service';
 import { DatePipe, DecimalPipe, NgClass } from '@angular/common';
-import { AuctionCategory } from '../entities/enumerations/auction-category.model';
-import { FilterComponent } from './components/filter/filter.component';
+import { FilterComponent } from './filter/filter.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   templateUrl: 'products.component.html',
   styleUrl: 'products.scss',
   standalone: true,
-  imports: [DecimalPipe, DatePipe, NgClass, FilterComponent],
+  imports: [DecimalPipe, DatePipe, NgClass, FilterComponent, RouterLink],
 })
 export class ProductsComponent implements OnInit {
   authors: any = new Set();
@@ -41,6 +41,10 @@ export class ProductsComponent implements OnInit {
       if (data.body) this.products.set(data.body);
     });
   }
+
+  /**
+   *
+   */
   getAuthors() {
     this.productService.query({ page: 0 }).subscribe(data => {
       this.authors = data.body?.map(author => {
@@ -48,8 +52,10 @@ export class ProductsComponent implements OnInit {
       });
     });
   }
+
   /**
    *
+   * @param imageKey
    */
   getImageStable(imageKey?: BinaryData | null) {
     return 'data:image/png;base64,' + imageKey;
@@ -57,6 +63,7 @@ export class ProductsComponent implements OnInit {
 
   /**
    *
+   * @param event
    */
   setQuery(event: any) {
     this.query = event;

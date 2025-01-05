@@ -57,7 +57,7 @@ export class ProductService {
   }
   find(id: number): Observable<EntityResponseType> {
     return this.http
-      .get<RestProduct>(`${this.resourceUrl}/${id}`, { observe: 'response' })
+      .get<RestProduct>(isDevMode() ? 'content/fake/product-1.json' : `${this.resourceUrl}/${id}`, { observe: 'response' })
       .pipe(map(res => this.convertResponseFromServer(res)));
   }
 
