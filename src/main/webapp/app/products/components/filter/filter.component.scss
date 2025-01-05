@@ -72,3 +72,28 @@
     }
   }
 }
+
+.date {
+  margin-top: 10px;
+  display: flex;
+  border-radius: 10px;
+  border: 1px solid rgba(169, 169, 169, 0.38);
+  padding: 6px 16px;
+  width: 100%;
+  cursor: pointer;
+
+  input {
+    font-size: 12px;
+    outline: none !important;
+    border: none;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  button {
+    font-size: 12px;
+    border: none;
+    background: none;
+  }
+}
