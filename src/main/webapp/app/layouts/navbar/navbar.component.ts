@@ -60,7 +60,7 @@ export default class NavbarComponent implements OnInit {
   }
 
   login(): void {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/dashboard/login']);
   }
 
   logout(): void {

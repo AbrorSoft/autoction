@@ -50,6 +50,7 @@ export class FilterComponent {
    *
    */
   filter() {
+    console.log(this.auctionDate);
     this.onFilter.emit(this.query);
   }
 
@@ -60,6 +61,9 @@ export class FilterComponent {
     return {
       'auctionCategory.equals': this.selectedCategory,
       'classification.equals': this.selectedClassification,
+      'estimatedPrice.lessThanOrEqual': this.maxPrice ? this.maxPrice : '',
+      'estimatedPrice.greaterThanOrEqual': this.minPrice ? this.minPrice : '',
+      'producedYear.equals': this.auctionDate,
     };
   }
 

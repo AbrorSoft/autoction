@@ -53,7 +53,7 @@ export class ProductDetailComponent implements OnInit {
    *
    * @param imageKey
    */
-  getImageStable(imageKey?: BinaryData | null) {
-    return 'data:image/png;base64,' + imageKey;
+  getImageStable(imageKey?: string | null) {
+    return 'api/file/' + imageKey;
   }
 }

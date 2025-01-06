@@ -64,12 +64,12 @@
     <div class="price">
       <div class="price-input">
         <span>$</span>
-        <input type="number" (ngModelChange)="filter()" [(ngModel)]="minPrice" placeholder="from" />
+        <input type="number" [(ngModel)]="minPrice" (ngModelChange)="filter()" placeholder="from" />
       </div>
 
       <div class="price-input">
         <span>$</span>
-        <input type="number" (ngModelChange)="filter()" [(ngModel)]="maxPrice" placeholder="to" />
+        <input type="number" [(ngModel)]="maxPrice" (ngModelChange)="filter()" placeholder="to" />
       </div>
     </div>
   </div>
