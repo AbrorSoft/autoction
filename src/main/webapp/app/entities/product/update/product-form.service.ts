@@ -35,13 +35,14 @@ type ProductFormGroupContent = {
   auctionCategory: FormControl<ProductFormRawValue['auctionCategory']>;
   lotNumber: FormControl<ProductFormRawValue['lotNumber']>;
   imageKey: FormControl<ProductFormRawValue['imageKey']>;
+  imageFile: FormControl<ProductFormRawValue['imageFile']>;
   authorName: FormControl<ProductFormRawValue['authorName']>;
   producedYear: FormControl<ProductFormRawValue['producedYear']>;
   classification: FormControl<ProductFormRawValue['classification']>;
   estimatedPrice: FormControl<ProductFormRawValue['estimatedPrice']>;
   description: FormControl<ProductFormRawValue['description']>;
   auctionDate: FormControl<ProductFormRawValue['auctionDate']>;
-  additionalInformation: FormControl<ProductFormRawValue['additionalInformation']>;
+  // additionalInformation: FormControl<ProductFormRawValue['additionalInformation']>;
 };
 
 export type ProductFormGroup = FormGroup<ProductFormGroupContent>;
@@ -70,6 +71,9 @@ export class ProductFormService {
       imageKey: new FormControl(productRawValue.imageKey, {
         validators: [Validators.required],
       }),
+      imageFile: new FormControl(productRawValue.imageFile, {
+        validators: [Validators.required],
+      }),
       authorName: new FormControl(productRawValue.authorName, {
         validators: [Validators.required],
       }),
@@ -84,7 +88,7 @@ export class ProductFormService {
       }),
       description: new FormControl(productRawValue.description),
       auctionDate: new FormControl(productRawValue.auctionDate),
-      additionalInformation: new FormControl(productRawValue.additionalInformation),
+      // additionalInformation: new FormControl(productRawValue.additionalInformation),
     });
   }
 

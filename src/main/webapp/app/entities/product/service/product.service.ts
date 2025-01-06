@@ -57,14 +57,14 @@ export class ProductService {
   }
   find(id: number): Observable<EntityResponseType> {
     return this.http
-      .get<RestProduct>(isDevMode() ? 'content/fake/product-1.json' : `${this.resourceUrl}/${id}`, { observe: 'response' })
+      .get<RestProduct>(`${this.resourceUrl}/${id}`, { observe: 'response' })
       .pipe(map(res => this.convertResponseFromServer(res)));
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http
-      .get<RestProduct[]>(isDevMode() ? 'content/fake/products.json' : this.resourceUrl, { params: options, observe: 'response' })
+      .get<RestProduct[]>(this.resourceUrl, { params: options, observe: 'response' })
       .pipe(map(res => this.convertResponseArrayFromServer(res)));
   }
 

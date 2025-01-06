@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { IProduct } from '../../entities/product/product.model';
 import { ProductService } from '../../entities/product/service/product.service';
-import { DecimalPipe, NgClass } from '@angular/common';
+import { DecimalPipe, JsonPipe, NgClass } from '@angular/common';
 import { FilterComponent } from './filter/filter.component';
 import { RouterLink } from '@angular/router';
 import FormatMediumDatePipe from '../../shared/date/format-medium-date.pipe';
@@ -10,10 +10,10 @@ import FormatMediumDatePipe from '../../shared/date/format-medium-date.pipe';
   templateUrl: 'products.component.html',
   styleUrl: 'products.scss',
   standalone: true,
-  imports: [DecimalPipe, NgClass, FilterComponent, RouterLink, FormatMediumDatePipe],
+  imports: [DecimalPipe, NgClass, FilterComponent, RouterLink, FormatMediumDatePipe, JsonPipe],
 })
 export class ProductsComponent implements OnInit {
-  authors: any = new Set();
+  authors: any[] = [];
   /**
    *
    * @private
@@ -48,9 +48,9 @@ export class ProductsComponent implements OnInit {
    */
   getAuthors() {
     this.productService.query({ page: 0 }).subscribe(data => {
-      this.authors = data.body?.map(author => {
-        if (this.authors.has(!author.authorName)) this.authors.add(author.authorName);
-      });
+      for (const author of data.body || []) {
+        if (!this.authors.includes(author.authorName)) this.authors.push(author.authorName);
+      }
     });
   }
 
@@ -58,8 +58,8 @@ export class ProductsComponent implements OnInit {
    *
    * @param imageKey
    */
-  getImageStable(imageKey?: BinaryData | null) {
-    return 'data:image/png;base64,' + imageKey;
+  getImageStable(imageKey?: string | null) {
+    return 'api/file/' + imageKey;
   }
 
   /**
