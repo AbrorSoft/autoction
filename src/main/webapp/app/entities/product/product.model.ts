@@ -14,7 +14,13 @@ export interface IProduct {
   estimatedPrice?: number | null;
   description?: string | null;
   auctionDate?: dayjs.Dayjs | null;
-  additionalInformation?: string | null;
+  additionalInformation?: any | null;
+  type?: string | null;
+  imageType?: string | null;
+  isFramed?: boolean | null;
+  height?: number | null;
+  length?: number | null;
+  width?: number | null;
 }
 
 export type NewProduct = Omit<IProduct, 'id'> & { id: null };

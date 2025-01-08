@@ -15,6 +15,14 @@ import { Classification } from 'app/entities/enumerations/classification.model';
 import { ProductService } from '../service/product.service';
 import { IProduct } from '../product.model';
 import { ProductFormGroup, ProductFormService } from './product-form.service';
+import {
+  Carvings,
+  Drawings,
+  ImageType,
+  PaintCategory,
+  PhotographicImages,
+  Sculptures,
+} from '../../enumerations/additional-information-category.model';
 
 @Component({
   standalone: true,
@@ -27,7 +35,16 @@ export class ProductUpdateComponent implements OnInit {
   product: IProduct | null = null;
   auctionCategoryValues = Object.keys(AuctionCategory);
   classificationValues = Object.keys(Classification);
-
+  additionalInfoDrawings = Object.keys(Drawings);
+  additionalInfoPaintCategory = Object.keys(PaintCategory);
+  additionalInfoPhotographicImages = Object.keys(PhotographicImages);
+  additionalInfoSculptures = Object.keys(Sculptures);
+  additionalInfoCarvings = Object.keys(Carvings);
+  imageType = Object.keys(ImageType);
+  additionalInformation: any;
+  length: number;
+  height: number;
+  isFramed: boolean = false;
   protected dataUtils = inject(DataUtils);
   protected eventManager = inject(EventManager);
   protected productService = inject(ProductService);
@@ -42,10 +59,13 @@ export class ProductUpdateComponent implements OnInit {
       this.product = product;
       if (product) {
         this.updateForm(product);
+        this.additionalInformation = this.editForm.get('auctionCategory')?.value;
       }
     });
   }
-
+  onChange(): void {
+    this.additionalInformation = this.editForm.get('auctionCategory')?.value;
+  }
   byteSize(base64String: string): string {
     return this.dataUtils.byteSize(base64String);
   }
@@ -69,7 +89,55 @@ export class ProductUpdateComponent implements OnInit {
 
   save(): void {
     this.isSaving = true;
-    const product = this.productFormService.getProduct(this.editForm);
+    let additionalInfo: any;
+    let product = this.productFormService.getProduct(this.editForm);
+    switch (product.auctionCategory) {
+      case AuctionCategory.DRAWINGS:
+        additionalInfo = {
+          type: product.type,
+          length: product.length,
+          height: product.height,
+          isFramed: product.isFramed,
+        };
+        break;
+
+      case AuctionCategory.CARVINGS:
+        additionalInfo = {
+          type: product.type,
+          length: product.length,
+          height: product.height,
+          width: product.width,
+        };
+        break;
+
+      case AuctionCategory.PHOTOGRAPHIC_IMAGES:
+        additionalInfo = {
+          type: product.type,
+          length: product.length,
+          height: product.height,
+          imageType: product.imageType,
+        };
+        break;
+      case AuctionCategory.SCULPTURES:
+        additionalInfo = {
+          type: product.type,
+          length: product.length,
+          height: product.height,
+          width: product.width,
+        };
+        break;
+      case AuctionCategory.PAINTINGS:
+        additionalInfo = {
+          type: product.type,
+          length: product.length,
+          height: product.height,
+          isFramed: product.isFramed,
+        };
+        break;
+      default:
+        additionalInfo = {};
+    }
+    product = { ...product, additionalInformation: additionalInfo };
     if (product.id !== null) {
       this.subscribeToSaveResponse(this.productService.update(product));
     } else {
@@ -100,4 +168,5 @@ export class ProductUpdateComponent implements OnInit {
     this.product = product;
     this.productFormService.resetForm(this.editForm, product);
   }
+  protected readonly AuctionCategory = AuctionCategory;
 }

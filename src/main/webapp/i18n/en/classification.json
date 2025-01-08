@@ -2,15 +2,15 @@
   "auctionApp": {
     "Classification": {
       "null": "",
-      "LANDSCAPE": "LANDSCAPE",
-      "SEASCAPE": "SEASCAPE",
-      "PORTRAIT": "PORTRAIT",
-      "FIGURE": "FIGURE",
-      "STILL_LIFE": "STILL_LIFE",
-      "NUDE": "NUDE",
-      "ANIMAL": "ANIMAL",
-      "ABSTRACT": "ABSTRACT",
-      "OTHER": "OTHER"
+      "LANDSCAPE": "Landscape",
+      "SEASCAPE": "Seascape",
+      "PORTRAIT": "Portrait",
+      "FIGURE": "Figure",
+      "STILL_LIFE": "Still Life",
+      "NUDE": "Nude",
+      "ANIMAL": "Animal",
+      "ABSTRACT": "Abstract",
+      "OTHER": "Other"
     }
   }
 }

@@ -2,11 +2,11 @@
   "auctionApp": {
     "AuctionCategory": {
       "null": "",
-      "PAINTINGS": "PAINTINGS",
-      "DRAWINGS": "DRAWINGS",
-      "PHOTOGRAPHIC_IMAGES": "PHOTOGRAPHIC_IMAGES",
-      "SCULPTURES": "SCULPTURES",
-      "CARVINGS": "CARVINGS"
+      "PAINTINGS": "Rasmlar",
+      "DRAWINGS": "Chizmalar",
+      "PHOTOGRAPHIC_IMAGES": "Fotografik tasvirlar",
+      "SCULPTURES": "Haykallar",
+      "CARVINGS": "O‘ymakorlik"
     }
   }
 }

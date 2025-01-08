@@ -2,11 +2,11 @@
   "auctionApp": {
     "AuctionCategory": {
       "null": "",
-      "PAINTINGS": "PAINTINGS",
-      "DRAWINGS": "DRAWINGS",
-      "PHOTOGRAPHIC_IMAGES": "PHOTOGRAPHIC_IMAGES",
-      "SCULPTURES": "SCULPTURES",
-      "CARVINGS": "CARVINGS"
+      "PAINTINGS": "Paintings",
+      "DRAWINGS": "Drawings",
+      "PHOTOGRAPHIC_IMAGES": "Photographic Images",
+      "SCULPTURES": "Sculptures",
+      "CARVINGS": "Carvings"
     }
   }
 }

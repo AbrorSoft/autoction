@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import dayjs from 'dayjs/esm';
 import { DATE_TIME_FORMAT } from 'app/config/input.constants';
 import { IProduct, NewProduct } from '../product.model';
+import { AuctionCategory } from '../../enumerations/auction-category.model';
 
 /**
  * A partial Type with required key is used as form input.
@@ -28,7 +29,7 @@ type ProductFormRawValue = FormValueOf<IProduct>;
 
 type NewProductFormRawValue = FormValueOf<NewProduct>;
 
-type ProductFormDefaults = Pick<NewProduct, 'id' | 'producedYear' | 'auctionDate'>;
+type ProductFormDefaults = Pick<NewProduct, 'id' | 'producedYear' | 'auctionDate' | 'lotNumber'>;
 
 type ProductFormGroupContent = {
   id: FormControl<ProductFormRawValue['id'] | NewProduct['id']>;
@@ -42,7 +43,13 @@ type ProductFormGroupContent = {
   estimatedPrice: FormControl<ProductFormRawValue['estimatedPrice']>;
   description: FormControl<ProductFormRawValue['description']>;
   auctionDate: FormControl<ProductFormRawValue['auctionDate']>;
-  // additionalInformation: FormControl<ProductFormRawValue['additionalInformation']>;
+  additionalInformation: FormControl<ProductFormRawValue['additionalInformation']>;
+  type: FormControl<ProductFormRawValue['type']>;
+  length: FormControl<ProductFormRawValue['length']>;
+  height: FormControl<ProductFormRawValue['height']>;
+  isFramed: FormControl<ProductFormRawValue['isFramed']>;
+  width: FormControl<ProductFormRawValue['width']>;
+  imageType: FormControl<ProductFormRawValue['imageType']>;
 };
 
 export type ProductFormGroup = FormGroup<ProductFormGroupContent>;
@@ -88,7 +95,13 @@ export class ProductFormService {
       }),
       description: new FormControl(productRawValue.description),
       auctionDate: new FormControl(productRawValue.auctionDate),
-      // additionalInformation: new FormControl(productRawValue.additionalInformation),
+      additionalInformation: new FormControl(productRawValue.additionalInformation),
+      length: new FormControl(productRawValue.length),
+      height: new FormControl(productRawValue.height),
+      type: new FormControl(productRawValue.type),
+      width: new FormControl(productRawValue.width),
+      imageType: new FormControl(productRawValue.imageType),
+      isFramed: new FormControl(productRawValue.isFramed ?? false),
     });
   }
 
@@ -108,11 +121,12 @@ export class ProductFormService {
 
   private getFormDefaults(): ProductFormDefaults {
     const currentTime = dayjs();
-
+    let date: any = new Date().getTime() + '';
+    date.slice(4, -1);
     return {
       id: null,
       producedYear: currentTime,
-      auctionDate: currentTime,
+      lotNumber: date,
     };
   }
 
@@ -123,7 +137,6 @@ export class ProductFormService {
       auctionDate: dayjs(rawProduct.auctionDate, DATE_TIME_FORMAT),
     };
   }
-
   private convertProductToProductRawValue(
     product: IProduct | (Partial<NewProduct> & ProductFormDefaults),
   ): ProductFormRawValue | PartialWithRequiredKeyOf<NewProductFormRawValue> {

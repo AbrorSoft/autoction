@@ -2,15 +2,15 @@
   "auctionApp": {
     "Classification": {
       "null": "",
-      "LANDSCAPE": "LANDSCAPE",
-      "SEASCAPE": "SEASCAPE",
-      "PORTRAIT": "PORTRAIT",
-      "FIGURE": "FIGURE",
-      "STILL_LIFE": "STILL_LIFE",
-      "NUDE": "NUDE",
-      "ANIMAL": "ANIMAL",
-      "ABSTRACT": "ABSTRACT",
-      "OTHER": "OTHER"
+      "LANDSCAPE": "Пейзаж",
+      "SEASCAPE": "Морской пейзаж",
+      "PORTRAIT": "Портрет",
+      "FIGURE": "Фигура",
+      "STILL_LIFE": "Натюрморт",
+      "NUDE": "Ню",
+      "ANIMAL": "Животные",
+      "ABSTRACT": "Абстракция",
+      "OTHER": "Другое"
     }
   }
 }

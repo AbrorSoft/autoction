@@ -63,7 +63,10 @@ Generic styles
 .ng-valid.required {
   border-left: 5px solid green;
 }
-
+.disabled {
+  background-color: rgba(214, 214, 214, 0.66) !important;
+  cursor: not-allowed;
+}
 .ng-invalid:not(form) {
   border-left: 5px solid red;
 }

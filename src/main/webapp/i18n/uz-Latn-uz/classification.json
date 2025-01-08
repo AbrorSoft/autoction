@@ -2,15 +2,15 @@
   "auctionApp": {
     "Classification": {
       "null": "",
-      "LANDSCAPE": "LANDSCAPE",
-      "SEASCAPE": "SEASCAPE",
-      "PORTRAIT": "PORTRAIT",
-      "FIGURE": "FIGURE",
-      "STILL_LIFE": "STILL_LIFE",
-      "NUDE": "NUDE",
-      "ANIMAL": "ANIMAL",
-      "ABSTRACT": "ABSTRACT",
-      "OTHER": "OTHER"
+      "LANDSCAPE": "Manzara",
+      "SEASCAPE": "Dengiz manzarasi",
+      "PORTRAIT": "Portret",
+      "FIGURE": "Figura",
+      "STILL_LIFE": "Natyurmort",
+      "NUDE": "Yalang‘och",
+      "ANIMAL": "Hayvonlar",
+      "ABSTRACT": "Abstraksiya",
+      "OTHER": "Boshqalar"
     }
   }
 }

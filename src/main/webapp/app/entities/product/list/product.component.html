@@ -100,13 +100,13 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="additionalInformation">
-              <div class="d-flex">
-                <span jhiTranslate="auctionApp.product.additionalInformation">Additional Information</span>
+            <!--            <th scope="col" jhiSortBy="additionalInformation">-->
+            <!--              <div class="d-flex">-->
+            <!--                <span jhiTranslate="auctionApp.product.additionalInformation">Additional Information</span>-->
 
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
+            <!--                <fa-icon class="p-1" icon="sort"></fa-icon>-->
+            <!--              </div>-->
+            <!--            </th>-->
             <th scope="col"></th>
           </tr>
         </thead>
@@ -150,7 +150,7 @@
               <td>{{ product.estimatedPrice }}</td>
               <td>{{ product.description }}</td>
               <td>{{ product.auctionDate | formatMediumDatetime }}</td>
-              <td>{{ product.additionalInformation }}</td>
+              <!--              <td>{{ product.additionalInformation | json }}</td>-->
               <td class="text-end">
                 <div class="btn-group">
                   <a

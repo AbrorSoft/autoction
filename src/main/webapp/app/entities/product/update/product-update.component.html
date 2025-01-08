@@ -24,6 +24,7 @@
             formControlName="auctionCategory"
             id="field_auctionCategory"
             data-cy="auctionCategory"
+            (change)="onChange()"
           >
             <option [ngValue]="null">{{ 'auctionApp.AuctionCategory.null' | translate }}</option>
             @for (auctionCategory of auctionCategoryValues; track $index) {
@@ -42,7 +43,16 @@
         @let lotNumberRef = editForm.get('lotNumber')!;
         <div class="mb-3">
           <label class="form-label" for="field_lotNumber" jhiTranslate="auctionApp.product.lotNumber">Lot Number</label>
-          <input type="number" class="form-control" name="lotNumber" id="field_lotNumber" data-cy="lotNumber" formControlName="lotNumber" />
+          <input
+            type="number"
+            class="form-control disabled"
+            name="lotNumber"
+            id="field_lotNumber"
+            [disabled]="true"
+            data-cy="lotNumber"
+            formControlName="lotNumber"
+            readonly
+          />
           @if (lotNumberRef.invalid && (lotNumberRef.dirty || lotNumberRef.touched)) {
             <div>
               @if (editForm.get('lotNumber')?.errors?.required) {
@@ -200,18 +210,203 @@
           </div>
         </div>
 
-        <!--        <div class="mb-3">-->
-        <!--          <label class="form-label" for="field_additionalInformation" jhiTranslate="auctionApp.product.additionalInformation"-->
-        <!--            >Additional Information</label-->
-        <!--          >-->
-        <!--          <textarea-->
-        <!--            class="form-control"-->
-        <!--            name="additionalInformation"-->
-        <!--            id="field_additionalInformation"-->
-        <!--            data-cy="additionalInformation"-->
-        <!--            formControlName="additionalInformation"-->
-        <!--          ></textarea>-->
-        <!--        </div>-->
+        <div class="mb-3" *ngIf="this.editForm.get('auctionCategory')?.value || additionalInformation">
+          <label class="form-label" for="field_additionalInformation" jhiTranslate="auctionApp.product.additionalInformation"
+            >Additional Information</label
+          >
+          <span> {{ 'auctionApp.AuctionCategory.' + additionalInformation | translate }}</span>
+
+          <div
+            *ngIf="
+              this.editForm.get('auctionCategory')?.value === AuctionCategory.DRAWINGS || additionalInformation === AuctionCategory.DRAWINGS
+            "
+          >
+            <select class="form-control" name="auctionCategory" formControlName="type" id="field_auctionCategory" data-cy="auctionCategory">
+              <option [ngValue]="null">{{ 'auctionApp.AuctionCategory.null' | translate }}</option>
+              @for (auctionCategory of additionalInfoDrawings; track $index) {
+                <option [value]="auctionCategory">{{ 'additionalInformationCategory.' + auctionCategory | translate }}</option>
+              }
+            </select>
+            <label class="form-label" for="field_height">Height</label>
+            <input type="number" class="form-control" name="lotNumber" id="field_height" data-cy="field_height" formControlName="height" />
+            <label class="form-label" for="field_length">Length</label>
+            <input
+              type="number"
+              class="form-control"
+              name="field_length"
+              id="field_length"
+              data-cy="field_length"
+              formControlName="length"
+            />
+            <div class="form-check form-switch mt-3">
+              <input class="form-check-input" formControlName="isFramed" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+              <label class="form-check-label" for="flexSwitchCheckDefault">Framed</label>
+            </div>
+          </div>
+          <div
+            *ngIf="
+              this.editForm.get('auctionCategory')?.value === AuctionCategory.CARVINGS || additionalInformation === AuctionCategory.CARVINGS
+            "
+          >
+            <select class="form-control" name="field_type" formControlName="type" id="field_type" data-cy="auctionCategory">
+              <option [ngValue]="null">{{ 'auctionApp.AuctionCategory.null' | translate }}</option>
+              @for (auctionCategory of additionalInfoCarvings; track $index) {
+                <option [value]="auctionCategory">{{ 'additionalInformationCategory.' + auctionCategory | translate }}</option>
+              }
+            </select>
+            <label class="form-label" for="field_height">Height</label>
+            <input type="number" class="form-control" name="lotNumber" id="field_height" data-cy="field_height" formControlName="height" />
+            <label class="form-label" for="field_length">Length</label>
+            <input
+              type="number"
+              class="form-control"
+              name="field_length"
+              id="field_length"
+              data-cy="field_length"
+              formControlName="length"
+            />
+            <label class="form-label" for="field_length">Width</label>
+            <input
+              type="number"
+              class="form-control"
+              name="field_length"
+              id="field_length"
+              data-cy="field_length"
+              formControlName="width"
+            />
+          </div>
+
+          <div
+            *ngIf="
+              this.editForm.get('auctionCategory')?.value === AuctionCategory.PHOTOGRAPHIC_IMAGES ||
+              additionalInformation === AuctionCategory.PHOTOGRAPHIC_IMAGES
+            "
+          >
+            <select
+              class="form-control"
+              name="auctionCategory"
+              formControlName="additionalInformation"
+              id="field_auctionCategory"
+              data-cy="auctionCategory"
+            >
+              <option [ngValue]="null">{{ 'auctionApp.AuctionCategory.null' | translate }}</option>
+              @for (auctionCategory of additionalInfoPhotographicImages; track $index) {
+                <option [value]="auctionCategory">{{ 'additionalInformationCategory.' + auctionCategory | translate }}</option>
+              }
+            </select>
+            <label class="form-label" for="field_length">Image type</label>
+            <select
+              class="form-control"
+              name="auctionCategory"
+              formControlName="imageType"
+              id="field_auctionCategory"
+              data-cy="auctionCategory"
+            >
+              <option [ngValue]="null">{{ 'auctionApp.AuctionCategory.null' | translate }}</option>
+              @for (auctionCategory of imageType; track $index) {
+                <option [value]="auctionCategory">{{ 'additionalInformationCategory.' + auctionCategory | translate }}</option>
+              }
+            </select>
+            <label class="form-label" for="field_length">Length</label>
+            <input
+              type="number"
+              class="form-control"
+              name="field_length"
+              id="field_length"
+              data-cy="field_length"
+              formControlName="length"
+            />
+            <label class="form-label" for="field_length">Height</label>
+            <input
+              type="number"
+              class="form-control"
+              name="field_length"
+              id="field_length"
+              data-cy="field_length"
+              formControlName="height"
+            />
+          </div>
+          <div
+            *ngIf="
+              this.editForm.get('auctionCategory')?.value === AuctionCategory.SCULPTURES ||
+              additionalInformation === AuctionCategory.SCULPTURES
+            "
+          >
+            <select
+              class="form-control"
+              name="auctionCategory"
+              formControlName="additionalInformation"
+              id="field_auctionCategory"
+              data-cy="auctionCategory"
+            >
+              <option [ngValue]="null">{{ 'auctionApp.AuctionCategory.null' | translate }}</option>
+              @for (auctionCategory of additionalInfoSculptures; track $index) {
+                <option [value]="auctionCategory">{{ 'additionalInformationCategory.' + auctionCategory | translate }}</option>
+              }
+            </select>
+            <label class="form-label" for="field_length">Length</label>
+            <input
+              type="number"
+              class="form-control"
+              name="field_length"
+              id="field_length"
+              data-cy="field_length"
+              formControlName="length"
+            />
+            <label class="form-label" for="field_length">Height</label>
+            <input
+              type="number"
+              class="form-control"
+              name="field_length"
+              id="field_length"
+              data-cy="field_length"
+              formControlName="height"
+            />
+            <label class="form-label" for="field_length">Width</label>
+            <input
+              type="number"
+              class="form-control"
+              name="field_length"
+              id="field_length"
+              data-cy="field_length"
+              formControlName="width"
+            />
+          </div>
+          <div
+            *ngIf="
+              this.editForm.get('auctionCategory')?.value === AuctionCategory.PAINTINGS ||
+              additionalInformation === AuctionCategory.PAINTINGS
+            "
+          >
+            <select
+              class="form-control"
+              name="auctionCategory"
+              formControlName="additionalInformation"
+              id="field_auctionCategory"
+              data-cy="auctionCategory"
+            >
+              <option [ngValue]="null">{{ 'auctionApp.AuctionCategory.null' | translate }}</option>
+              @for (auctionCategory of additionalInfoPaintCategory; track $index) {
+                <option [value]="auctionCategory">{{ 'additionalInformationCategory.' + auctionCategory | translate }}</option>
+              }
+            </select>
+            <label class="form-label" for="field_height">Height</label>
+            <input type="number" class="form-control" name="lotNumber" id="field_height" data-cy="field_height" formControlName="height" />
+            <label class="form-label" for="field_length">Length</label>
+            <input
+              type="number"
+              class="form-control"
+              name="field_length"
+              id="field_length"
+              data-cy="field_length"
+              formControlName="length"
+            />
+            <div class="form-check form-switch mt-3">
+              <input class="form-check-input" formControlName="isFramed" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+              <label class="form-check-label" for="flexSwitchCheckDefault">Framed</label>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div>
