@@ -1,4 +1,32 @@
 <div class="dropdown">
+  <div class="name" (click)="updateDropdown('author')">
+    <span>Author</span>
+    <svg
+      [ngClass]="{ 'active-icon': dropdowns().author }"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M15.6508 4.24073C16.0701 4.60015 16.1187 5.23145 15.7593 5.65078L10.3171 12L15.7593 18.3492C16.1187 18.7685 16.0701 19.3998 15.6508 19.7592C15.2315 20.1187 14.6002 20.0701 14.2407 19.6508L8.24074 12.6508C7.91975 12.2763 7.91975 11.7237 8.24074 11.3492L14.2407 4.3492C14.6002 3.92987 15.2315 3.88131 15.6508 4.24073Z"
+        fill="currentColor"
+      />
+    </svg>
+  </div>
+
+  <div class="dropdown-items" [ngClass]="{ active: dropdowns().author }">
+    <div class="price">
+      <div class="">
+        <input type="text" class="author-input" [(ngModel)]="author" (ngModelChange)="filter()" placeholder="Nmae" />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="dropdown">
   <div class="name" (click)="updateDropdown('category')">
     <span>Auction Category</span>
 
@@ -121,12 +149,36 @@
         </svg>
       </button>
     </div>
+    <div class="date">
+      <input
+        ngbDatepicker
+        placeholder="yyyy-mm-dd"
+        class="form-control"
+        [(ngModel)]="toAuctionDate"
+        (ngModelChange)="filter()"
+        #s="ngbDatepicker"
+      />
+      <button (click)="s.toggle()" type="button">
+        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M6 4.56476V2.56476H8V4.56476H16V2.56476H18V4.56476H18.0658C18.9523 4.56471 19.7161 4.56467 20.3278 4.6469C20.9833 4.73504 21.6117 4.93378 22.1213 5.44344C22.631 5.9531 22.8297 6.58146 22.9179 7.23697C23.0001 7.84864 23.0001 8.61246 23 9.49896C23 9.56006 23 9.59061 22.9987 9.61642C22.9722 10.1281 22.5633 10.537 22.0517 10.5634C22.0259 10.5648 21.9953 10.5648 21.9342 10.5648H2.06583C2.00471 10.5648 1.97415 10.5648 1.94832 10.5634C1.43669 10.5369 1.02782 10.1281 1.00134 9.61644C1 9.59062 1 9.56006 1 9.49893C0.999953 8.61245 0.99991 7.84863 1.08215 7.23697C1.17028 6.58146 1.36902 5.9531 1.87868 5.44344C2.38835 4.93378 3.0167 4.73504 3.67221 4.6469C4.28387 4.56467 5.04769 4.56471 5.93417 4.56476H6Z"
+            fill="black"
+          />
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M23 14.5648C23 13.622 23 13.1505 22.7071 12.8577C22.4142 12.5648 21.9428 12.5648 21 12.5648L3 12.5648C2.0572 12.5648 1.58579 12.5648 1.2929 12.8577C1 13.1505 1 13.6219 1 14.5648L1 17.6306C0.999953 18.5171 0.99991 19.2809 1.08215 19.8926C1.17028 20.5481 1.36902 21.1764 1.87868 21.6861C2.38835 22.1957 3.0167 22.3945 3.67221 22.4826C4.28388 22.5649 5.0477 22.5648 5.9342 22.5648H18.0658C18.9523 22.5648 19.7161 22.5649 20.3278 22.4826C20.9833 22.3945 21.6117 22.1957 22.1213 21.6861C22.631 21.1764 22.8297 20.5481 22.9179 19.8926C23.0001 19.2809 23.0001 18.5171 23 17.6306L23 14.5648ZM19 16.5648V18.5648H17V16.5648H19Z"
+            fill="black"
+          />
+        </svg>
+      </button>
+    </div>
   </div>
 </div>
 
 <div class="dropdown">
   <div class="name" (click)="updateDropdown('classification')">
-    <span>Subject Classification</span>
+    <span>Classification</span>
 
     <svg
       [ngClass]="{ 'active-icon': dropdowns().classification }"
@@ -163,4 +215,7 @@
       </div>
     }
   </div>
+</div>
+<div class="show-all-container">
+  <button (click)="clearFilter()" class="show-all-button">Clear All</button>
 </div>

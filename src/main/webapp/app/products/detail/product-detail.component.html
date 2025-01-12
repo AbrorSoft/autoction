@@ -1,18 +1,115 @@
+<!-- If you’re using Angular, use *ngIf="product()" instead of @if (product()) -->
 @if (product()) {
-  <div class="detail">
-    <div class="left">
-      <img [src]="getImageStable(product()?.imageKey)" alt="" />
+  <div class="product-card">
+    <div class="product-card__image">
+      <img [src]="getImageStable(product()?.imageKey)" alt="Product image" />
     </div>
 
-    <div class="right">
-      <h3 class="name">{{ product()?.auctionCategory }}</h3>
-      <span class="author">by {{ product()?.authorName }}</span>
+    <div class="product-card__content">
+      <!-- Title -->
+      <h2 class="product-card__title">{{ product()?.auctionCategory }}</h2>
 
-      <h3 class="price">${{ product()?.estimatedPrice | number }}</h3>
+      <!-- Author -->
+      <div class="product-card__author">
+        <span>by {{ product()?.authorName }}</span>
+      </div>
 
-      <p class="description">{{ product()?.description }}</p>
+      <!-- Price -->
+      <p class="product-card__price">${{ product()?.estimatedPrice | number }}</p>
 
-      <span class="date">{{ product()?.auctionDate | formatMediumDate }}</span>
+      <!-- Description -->
+      <p class="product-card__description">
+        {{ product()?.description }}
+      </p>
+
+      <!-- Creative Additional Info (only visible if any fields exist) -->
+      <div class="product-card__additional-info" *ngIf="product()?.additionalInformation">
+        <h4 class="product-card__subheading">Additional Info</h4>
+        <div class="additional-info-grid">
+          <!-- Height -->
+          <div class="info-box" *ngIf="product()?.additionalInformation?.height">
+            <div class="info-box__icon">
+              <!-- Font Awesome 6.6 icon for vertical arrows (height) -->
+              <i class="fa-solid fa-up-down"></i>
+            </div>
+            <div class="info-box__content">
+              <p class="info-label">Height</p>
+              <p class="info-value">{{ product()?.additionalInformation?.height }}</p>
+            </div>
+          </div>
+
+          <!-- Length -->
+          <div class="info-box" *ngIf="product()?.additionalInformation?.length">
+            <div class="info-box__icon">
+              <!-- Ruler combined for length -->
+              <i class="fa-solid fa-ruler-combined"></i>
+            </div>
+            <div class="info-box__content">
+              <p class="info-label">Length</p>
+              <p class="info-value">{{ product()?.additionalInformation?.length }}</p>
+            </div>
+          </div>
+
+          <!-- Width -->
+          <div class="info-box" *ngIf="product()?.additionalInformation?.width">
+            <div class="info-box__icon">
+              <!-- Left-right arrows for width -->
+              <i class="fa-solid fa-left-right"></i>
+            </div>
+            <div class="info-box__content">
+              <p class="info-label">Width</p>
+              <p class="info-value">{{ product()?.additionalInformation?.width }}</p>
+            </div>
+          </div>
+
+          <!-- Is Framed -->
+          <div class="info-box" *ngIf="product()?.additionalInformation?.isFramed">
+            <div class="info-box__icon">
+              <!-- Vector square could represent a frame -->
+              <i class="fa-solid fa-vector-square"></i>
+            </div>
+            <div class="info-box__content">
+              <p class="info-label">Framed</p>
+              <p class="info-value">
+                {{ product()?.additionalInformation?.isFramed }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Type -->
+          <div class="info-box" *ngIf="product()?.additionalInformation?.type">
+            <div class="info-box__icon">
+              <i class="fa-solid fa-tag"></i>
+            </div>
+            <div class="info-box__content">
+              <p class="info-label">Type</p>
+              <p class="info-value">{{ product()?.additionalInformation?.type }}</p>
+            </div>
+          </div>
+
+          <!-- Image Type -->
+          <div class="info-box" *ngIf="product()?.additionalInformation?.imageType">
+            <div class="info-box__icon">
+              <!-- File image icon -->
+              <i class="fa-solid fa-file-image"></i>
+            </div>
+            <div class="info-box__content">
+              <p class="info-label">Image Type</p>
+              <p class="info-value">
+                {{ product()?.additionalInformation?.imageType }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Auction Date -->
+      <div class="product-card__footer">
+        <span class="product-card__date">
+          {{ product()?.auctionDate | formatMediumDate }}
+        </span>
+        <!--        <button class="product-card__action">Bid Now</button>-->
+      </div>
     </div>
   </div>
 }

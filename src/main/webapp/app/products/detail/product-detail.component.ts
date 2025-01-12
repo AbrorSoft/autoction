@@ -2,14 +2,14 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { IProduct } from '../../entities/product/product.model';
 import { ProductService } from '../../entities/product/service/product.service';
 import { ActivatedRoute } from '@angular/router';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, NgIf } from '@angular/common';
 import FormatMediumDatePipe from '../../shared/date/format-medium-date.pipe';
 
 @Component({
   standalone: true,
   templateUrl: 'product-detail.component.html',
   styleUrl: 'product-detail.component.scss',
-  imports: [DecimalPipe, FormatMediumDatePipe],
+  imports: [DecimalPipe, FormatMediumDatePipe, NgIf],
 })
 export class ProductDetailComponent implements OnInit {
   /**
