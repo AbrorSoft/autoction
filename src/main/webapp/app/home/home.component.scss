@@ -1,3 +1,16 @@
+.hero-section {
+  background: url('https://images.unsplash.com/photo-1637323635977-4043b30844d1') no-repeat center center;
+  background-size: cover;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-section .container {
+  text-align: left; /* Aligns text to the left */
+  color: #fff;
+}
+
 .live-auction {
   .live-auction-grid {
     .featured-card {
@@ -33,7 +46,7 @@
       border-top-left-radius: 15px;
       border-top-right-radius: 15px;
       object-fit: cover;
-      height: 570px; /* Adjust for smaller cards */
+      height: 550px; /* Adjust for smaller cards */
     }
     .card-mini-img-top {
       border-top-left-radius: 15px;
@@ -55,4 +68,62 @@
       border-top-right-radius: 15px;
     }
   }
+}
+.user-reviews h2 {
+  font-weight: bold;
+}
+
+.review-card {
+  background: #fff;
+  border-radius: 10px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.review-card blockquote {
+  font-style: italic;
+  color: #555;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.review-card blockquote::before {
+  content: open-quote;
+  font-size: 3rem;
+  line-height: 0.1em;
+  margin-right: 0.5rem;
+  vertical-align: -0.4em;
+  color: #007bff;
+}
+
+.review-card blockquote footer {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #333;
+}
+.site-footer {
+  font-family: Arial, sans-serif;
+}
+
+.site-footer a {
+  color: #fff;
+}
+
+.site-footer a:hover {
+  color: #f39c12;
+  text-decoration: none;
+}
+
+.site-footer .text-warning {
+  color: #f39c12 !important;
+}
+
+.site-footer hr {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }

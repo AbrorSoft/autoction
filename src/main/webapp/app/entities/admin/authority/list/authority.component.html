@@ -12,7 +12,7 @@
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-authority"
-        [routerLink]="['/authority/new']"
+        [routerLink]="['/dashboard/authority/new']"
       >
         <fa-icon icon="plus"></fa-icon>
         <span jhiTranslate="auctionApp.adminAuthority.home.createLabel">Create a new Authority</span>
@@ -49,11 +49,15 @@
           @for (authority of authorities; track trackName(authority)) {
             <tr data-cy="entityTable">
               <td>
-                <a [routerLink]="['/authority', authority.name, 'view']">{{ authority.name }}</a>
+                <a [routerLink]="['/dashboard/authority', authority.name, 'view']">{{ authority.name }}</a>
               </td>
               <td class="text-end">
                 <div class="btn-group">
-                  <a [routerLink]="['/authority', authority.name, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                  <a
+                    [routerLink]="['/dashboard/authority', authority.name, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
                     <fa-icon icon="eye"></fa-icon>
                     <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                   </a>

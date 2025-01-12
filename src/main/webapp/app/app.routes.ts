@@ -44,6 +44,11 @@ const routes: Routes = [
         title: 'login.title',
       },
       {
+        path: 'about',
+        data: { pageTitle: 'coffeeApp.adminAuthority.home.title' },
+        loadChildren: () => import('./entities/about/about.routes'),
+      },
+      {
         path: '',
         loadChildren: () => import(`./entities/entity.routes`),
       },
