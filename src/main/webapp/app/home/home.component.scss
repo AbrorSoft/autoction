@@ -1,23 +1,58 @@
-/* ==========================================================================
-Main page styles
-========================================================================== */
+.live-auction {
+  .live-auction-grid {
+    .featured-card {
+      border-radius: 15px;
+      .card-img-top {
+        object-fit: cover;
+        height: 250px; /* Adjust as needed */
+      }
 
-.hipster {
-  display: inline-block;
-  width: 347px;
-  height: 497px;
-  background: url('../../content/images/jhipster_family_member_1.svg') no-repeat center top;
-  background-size: contain;
-}
+      .countdown {
+        margin-top: -180px;
+        border-radius: 15px;
+        .countdown-item {
+          min-width: 50px;
+        }
+      }
+      .countdowns {
+        //margin-top: -50px ;
+        border-radius: 15px;
+        .countdown-item {
+          min-width: 50px;
+        }
+      }
+    }
+    .card img.card-img-top {
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      object-fit: cover;
+      height: 150px; /* Adjust for smaller cards */
+    }
 
-/* wait autoprefixer update to allow simple generation of high pixel density media query */
-@media only screen and (-webkit-min-device-pixel-ratio: 2),
-  only screen and (-moz-min-device-pixel-ratio: 2),
-  only screen and (-o-min-device-pixel-ratio: 2/1),
-  only screen and (min-resolution: 192dpi),
-  only screen and (min-resolution: 2dppx) {
-  .hipster {
-    background: url('../../content/images/jhipster_family_member_1.svg') no-repeat center top;
-    background-size: contain;
+    .main-card-top {
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      object-fit: cover;
+      height: 570px; /* Adjust for smaller cards */
+    }
+    .card-mini-img-top {
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      object-fit: cover;
+      height: 220px; /* Adjust for smaller cards */
+    }
+    .countdown-item {
+      border: 1px solid #eee;
+      border-radius: 5px;
+      padding: 0.25rem 0.5rem;
+    }
+    .card-body {
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+    }
+    .card-mini-img-top {
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
   }
 }
